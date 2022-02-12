@@ -1,0 +1,26 @@
+{
+	"name": "Rust Study on VSCode",
+	"dockerComposeFile": "./docker-compose.yml",
+	"service": "rust",
+	// workspaceを明示的に指定
+	"workspaceFolder": "/home/vscode/develop",
+	// remotecontainer内でのextension
+	"extensions": [
+		"vscodevim.vim",
+		"formulahendry.auto-rename-tag",
+		"mhutchie.git-graph",
+		"vscode-icons-team.vscode-icons",
+		"vector-of-bool.gitflow",
+		"oderwat.indent-rainbow",
+		"ionutvmi.path-autocomplete",
+		"christian-kohler.path-intellisense",
+		"streetsidesoftware.code-spell-checker",
+		"EditorConfig.EditorConfig",
+    "ms-azuretools.vscode-docker",
+		"rangav.vscode-thunder-client",
+		"ritwickdey.liveserver",
+	],
+	// shutdown時の処理
+	"shutdownAction": "stopCompose",
+	"remoteUser": "vscode"
+}

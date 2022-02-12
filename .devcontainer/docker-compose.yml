@@ -1,0 +1,28 @@
+version: '3.2'
+services:
+  rust:
+    container_name: rust_study
+    # ホスト名を明示的に指定する
+    hostname: local_rust
+    build:
+      context: .
+      dockerfile: ./ubuntu/Dockerfile
+      args:
+        USER_ID: 1000
+        USER_NAME: vscode
+        GROUP_ID: 1000
+        GROUP_NAME: vscode
+    env_file: devcontainer.env
+    environment:
+      - TZ=JST-9
+    ports:
+      - 80:80
+      - 8080:8080
+      - 3000:3000
+      - 5500:5500
+    volumes:
+      # ソースコードとdevcontainerを一緒に管理する場合は明示的にマウント先を指定
+      - ../:/home/vscode/develop:cached
+      - ~/.ssh:/home/vsocde/.ssh
+      - ~/.vscode/extensions/thunder-client:/home/vscode/thunder-client
+    command: bash .devcontainer/post-start.sh
