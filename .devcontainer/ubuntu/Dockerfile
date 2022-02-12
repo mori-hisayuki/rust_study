@@ -58,6 +58,8 @@ RUN set -x \
         jq \
         unzip \
         wget \
+        # gccのコンパイラが必要
+        build-essential \
     && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 # vscode extensions cache (extensionsの再インストールを防ぐ)
