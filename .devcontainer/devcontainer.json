@@ -21,7 +21,8 @@
 		"ritwickdey.liveserver",
 		"rust-lang.rust"
 	],
-	"postCreateCommand": "sleep infinity",
+	// container新規作成時の処理
+	"postCreateCommand": "bash .devcontainer/initialize.sh",
 	// shutdown時の処理
 	"shutdownAction": "stopCompose",
 	"remoteUser": "vscode"

@@ -27,4 +27,4 @@ services:
       - ../:/home/vscode/develop:cached
       - ~/.ssh:/home/vscode/.ssh
       - ~/.vscode/extensions/thunder-client:/home/vscode/thunder-client
-    command: bash -eu .devcontainer/post-start.sh
+    command: sleep infinity
