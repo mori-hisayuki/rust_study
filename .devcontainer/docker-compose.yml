@@ -12,9 +12,11 @@ services:
         USER_NAME: vscode
         GROUP_ID: 1000
         GROUP_NAME: vscode
+        RUST_VERSION: stable
     env_file: devcontainer.env
     environment:
       - TZ=JST-9
+      - RUST_VERSION=stable
     ports:
       - 80:80
       - 8080:8080
@@ -23,6 +25,6 @@ services:
     volumes:
       # ソースコードとdevcontainerを一緒に管理する場合は明示的にマウント先を指定
       - ../:/home/vscode/develop:cached
-      - ~/.ssh:/home/vsocde/.ssh
+      - ~/.ssh:/home/vscode/.ssh
       - ~/.vscode/extensions/thunder-client:/home/vscode/thunder-client
-    command: bash .devcontainer/post-start.sh
+    command: bash -eu .devcontainer/post-start.sh

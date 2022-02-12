@@ -4,6 +4,12 @@ ARG USER_ID
 ARG USER_NAME
 ARG GROUP_ID
 ARG GROUP_NAME
+ARG RUST_VERSION
+
+# 環境変数
+RUN set -x \
+    && echo $TZ \
+    && echo $RUST_VERSION
 
 # 証明書のDL
 RUN set -x \
@@ -23,7 +29,7 @@ RUN set -x \
 RUN set -x \
     && apt-get -y update \
     && apt-get install -y --no-install-recommends \
-    sudo \
+        sudo \
     && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 # create group
@@ -46,12 +52,12 @@ RUN set - x \
 RUN set -x \
     && apt-get -y update \
     && apt-get install -y --no-install-recommends \
-    git \
-    curl \
-    openssh-client \
-    jq \
-    unzip \
-    wget \
+        git \
+        curl \
+        openssh-client \
+        jq \
+        unzip \
+        wget \
     && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 # vscode extensions cache (extensionsの再インストールを防ぐ)
@@ -61,6 +67,12 @@ RUN set -x \
     && chown -R ${GROUP_NAME}:${USER_NAME} /home/${USER_NAME}/.vscode-server
 
 USER ${USER_NAME}
+
+# install Rust
+# USERを切り替えてからUserHomeにインストール
+RUN set -x \
+    && curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain ${RUST_VERSION}
+ENV PATH $PATH:$HOME/.cargo/bin
 
 # create workingirectory
 RUN set -x \

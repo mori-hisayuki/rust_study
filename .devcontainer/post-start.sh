@@ -1,1 +1,1 @@
-sleep infinity
+#!/bin/bash
