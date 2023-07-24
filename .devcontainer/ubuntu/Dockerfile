@@ -6,11 +6,6 @@ ARG GROUP_ID
 ARG GROUP_NAME
 ARG RUST_VERSION
 
-# 環境変数
-RUN set -x \
-    && echo $TZ \
-    && echo $RUST_VERSION
-
 # 証明書のDL
 RUN set -x \
     && apt-get update \

@@ -1,28 +1,43 @@
 {
 	"name": "Rust Study on VSCode",
-	"dockerComposeFile": "./docker-compose.yml",
+	"dockerComposeFile": "./compose.yml",
 	"service": "rust",
 	// workspaceを明示的に指定
 	"workspaceFolder": "/home/vscode/develop",
 	// remotecontainer内でのextension
-	"extensions": [
-		"vscodevim.vim",
-		"formulahendry.auto-rename-tag",
-		"mhutchie.git-graph",
-		"vscode-icons-team.vscode-icons",
-		"vector-of-bool.gitflow",
-		"oderwat.indent-rainbow",
-		"ionutvmi.path-autocomplete",
-		"christian-kohler.path-intellisense",
-		"streetsidesoftware.code-spell-checker",
-		"EditorConfig.EditorConfig",
-    "ms-azuretools.vscode-docker",
-		"rangav.vscode-thunder-client",
-		"ritwickdey.liveserver",
-		"rust-lang.rust"
-	],
+  // VS Codeの設定
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // 行末技の空白の自動削除を無効(editorconfigにやらせるため)
+        "files.trimTrailingWhitespace": false,
+      },
+			 // remote container内でのextension
+			"extensions": [
+	      "vscodevim.vim",                          // Vim
+        "pkief.material-icon-theme",              // Material Icon Thema
+        "formulahendry.auto-rename-tag",          // Auto Rename Tag
+        "oderwat.indent-rainbow",                 // indent-rainbow
+        "EditorConfig.EditorConfig",              // EditorConfig for VS Code
+        "mhutchie.git-graph",                     // Git Graph
+        "ionutvmi.path-autocomplete",             // Path Autocomplete
+        "christian-kohler.path-intellisense",     // Path Intellisense
+        "streetsidesoftware.code-spell-checker",  // Code Spell Checker
+				"ms-azuretools.vscode-docker",            // Docker
+				"rust-lang.rust-analyzer",								// rust-analyzer
+				"vadimcn.vscode-lldb",										// CodeLLDB
+        "swellaby.vscode-rust-test-adapter",      // Rust Test Explorer
+        "JScearcy.rust-doc-viewer",               // Rust Doc Viewer
+        "ritwickdey.LiveServer",                  // Live Server
+        "serayuzgur.crates",                      // crates
+        "tamasfe.even-better-toml",               // Even Better TOML
+        "rangav.vscode-thunder-client"            // Thunder Client
+			]
+		}
+	},
+
 	// container新規作成時の処理
-	"postCreateCommand": "bash .devcontainer/initialize.sh",
+	"postCreateCommand": "sh .devcontainer/initialize.sh",
 	// shutdown時の処理
 	"shutdownAction": "stopCompose",
 	"remoteUser": "vscode"
